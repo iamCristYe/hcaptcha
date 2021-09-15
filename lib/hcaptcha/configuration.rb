@@ -43,8 +43,8 @@ module Hcaptcha
       @skip_verify_env = %w[test cucumber]
       @handle_timeouts_gracefully = true
 
-      @secret_key = ENV['HCAPTCHA_SECRET_KEY']
-      @site_key = ENV['HCAPTCHA_SITE_KEY']
+      @secret_key = ENV['HCAPTCHA_SECRET_KEY'] || File.read("/run/secrets/hcaptcha_secret_key")
+      @site_key = ENV['HCAPTCHA_SITE_KEY'] || File.read("/run/secrets/hcaptcha_site_key")
       @verify_url = nil
       @api_server_url = nil
     end
